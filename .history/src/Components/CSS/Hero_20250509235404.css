@@ -141,7 +141,7 @@ margin-top: 20px;
 }
 
 .right-head {
- /* Ensures it takes full width */
+  display: block; /* Ensures it takes full width */
   margin-bottom: 8px; /* Adds space below the title */
   color: var(--button-Text, #FFF);
   font-family: 'Niramit', sans-serif;
@@ -149,8 +149,6 @@ margin-top: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  display: flex;
-  flex-direction: column;
 }
 
 .right-info {
@@ -167,7 +165,7 @@ margin-top: 20px;
   text-align: left;
   white-space: pre-line;
   overflow-wrap: break-word;
-
+  background: rgba(0, 0, 0, 0.3); /* Optional for readability */
   border-radius: 8px;
 }
 

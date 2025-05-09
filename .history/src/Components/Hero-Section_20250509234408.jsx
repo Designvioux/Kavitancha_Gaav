@@ -75,7 +75,6 @@
 
 // export default Hero;
 
-
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import './CSS/Hero.css';
@@ -98,12 +97,7 @@ const Hero = () => {
       ];
       const marathiDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
 
-      const toMarathi = (num) =>
-        String(num)
-          .split('')
-          .map(d => marathiDigits[parseInt(d, 10)])
-          .join('');
-
+      const toMarathi = (num) => String(num).split('').map(d => marathiDigits[parseInt(d)]).join('');
       const day = toMarathi(dateObj.getDate());
       const month = marathiMonths[dateObj.getMonth()];
       const year = toMarathi(dateObj.getFullYear());
@@ -116,35 +110,30 @@ const Hero = () => {
       const day = istDate.getDate();
       const month = istDate.toLocaleString('en-US', { month: 'long' }).toLowerCase();
 
-      const janm = dinVishesh('janm', month, String(day)) || [];
-      const mrutyu = dinVishesh('mrutyu', month, String(day)) || [];
-      const ghatana = dinVishesh('ghatana', month, String(day)) || [];
+      const janm = dinVishesh('janm', month, String(day));
+      const mrutyu = dinVishesh('mrutyu', month, String(day));
+      const ghatana = dinVishesh('ghatana', month, String(day));
 
-      const allEvents = [
-        ...ghatana.map(item => `【घटना】 ${item}`),
-        ...janm.map(item => `【जन्म】 ${item}`),
-        ...mrutyu.map(item => `【मृत्यू】 ${item}`)
-      ];
+      const formatSection = (title, items) => {
+        if (items.length === 0) return '';
+        return `\n🔹 ${title}\n${items.map((item, i) => `• ${item}`).join('\n')}`;
+      };
 
-      const limitedEvents = allEvents.slice(0, 5); // Max 5 lines
-
-      const content =
-        limitedEvents.length > 0
-          ? limitedEvents.join('\n')
-          : 'आज काही विशेष माहिती उपलब्ध नाही.';
+      const content = 
+        formatSection('घटना', ghatana) +
+        formatSection('जन्म', janm) +
+        formatSection('मृत्यू', mrutyu);
 
       setTodayVishesh({
         date: getMarathiDate(istDate),
-        content
+        content: content.trim() || 'आज काही विशेष माहिती उपलब्ध नाही.',
       });
     };
 
     loadDinVishesh();
   }, []);
 
-  if (!todayVishesh) {
-    return <div className="Hero-Container">लोड होत आहे...</div>;
-  }
+  if (!todayVishesh) return <div className="Hero-Container">लोड होत आहे...</div>;
 
   return (
     <motion.div
@@ -170,12 +159,11 @@ const Hero = () => {
         <div className="line"></div>
 
         <motion.div className="right-content" initial={{ x: 100 }} animate={{ x: 0 }}>
-  <h4 className="right-head">आजचा दिनविशेष : {todayVishesh.date}</h4>
-  <div className="right-info" style={{ whiteSpace: 'pre-line', marginTop: '0.5rem' }}>
-    {todayVishesh.content}
-  </div>
-</motion.div>
-
+          <h4 className="right-head">आजचा दिनविशेष : {todayVishesh.date}</h4>
+          <p className="right-info" style={{ whiteSpace: 'pre-line' }}>
+            {todayVishesh.content}
+          </p>
+        </motion.div>
       </motion.div>
     </motion.div>
   );

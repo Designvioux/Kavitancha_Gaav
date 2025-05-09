@@ -169,13 +169,7 @@ const Hero = () => {
 
         <div className="line"></div>
 
-        <motion.div className="right-content" initial={{ x: 100 }} animate={{ x: 0 }}>
-  <h4 className="right-head">आजचा दिनविशेष : {todayVishesh.date}</h4>
-  <div className="right-info" style={{ whiteSpace: 'pre-line', marginTop: '0.5rem' }}>
-    {todayVishesh.content}
-  </div>
-</motion.div>
-
+      
       </motion.div>
     </motion.div>
   );

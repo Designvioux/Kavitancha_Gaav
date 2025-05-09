@@ -140,39 +140,31 @@ margin-top: 20px;
 
 }
 
-.right-head {
- /* Ensures it takes full width */
-  margin-bottom: 8px; /* Adds space below the title */
+.right-head{
   color: var(--button-Text, #FFF);
-  font-family: 'Niramit', sans-serif;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  display: flex;
-  flex-direction: column;
+/* Heading/Niramit/Niramit */
+font-family: Niramit , sans-serif;
+font-size: 30px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
 }
 
-.right-info {
-  display: block; /* Ensures it starts on a new line */
-  color: #FFF;
-  font-family: 'Niramit', sans-serif;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.7;
-  width: 100%;
-  max-width: 400px;
-  padding: 10px;
-  text-align: left;
-  white-space: pre-line;
-  overflow-wrap: break-word;
+.right-info{
+  color: var(--button-Text, #FFF);
+font-family: Niramit, sans-serif;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: 36px; /* 150% */
+margin-top:-10px ;
+width: 400px;
+height: auto;
+white-space: pre-line;
+padding: 10px;
 
-  border-radius: 8px;
+
 }
-
-
-
 .line {
   width: 2px;
   height: 171px;
